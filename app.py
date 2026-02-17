@@ -1,3 +1,8 @@
+'''Reference for PyGame Flappy Bird tutorial:
+https://www.youtube.com/watch?v=UZg49z76cLw&t=1s&ab_channel=TechWithTim'''
+
+'''This is the game that I used to learn python during my internship last summer.
+I have since added some folder searching fiunctionality for the assets and the use of the images.'''
 import pygame
 from pygame.locals import *
 import random
