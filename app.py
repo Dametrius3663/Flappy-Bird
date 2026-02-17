@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+import os
 
 pygame.init()
 
@@ -13,10 +14,11 @@ screen_height = 936
 screen = pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption('Flappy Bird')
 
-#load images
-bg = pygame.image.load('assets/bg.png')
-ground_img = pygame.image.load('assets/ground.png')
-button_img = pygame.image.load('assets/restart.png')
+#load images (use script-relative paths)
+base_dir = os.path.join(os.path.dirname(__file__), 'assets')
+bg = pygame.image.load(os.path.join(base_dir, 'bg.png'))
+ground_img = pygame.image.load(os.path.join(base_dir, 'ground.png'))
+button_img = pygame.image.load(os.path.join(base_dir, 'restart.png'))
 
 #define font
 font = pygame.font.SysFont('Bauhaus 93', 60)
@@ -53,7 +55,7 @@ class Bird(pygame.sprite.Sprite):
         self.index = 0
         self.counter = 0
         for num in range(1,4):
-            img = pygame.image.load(f'assets/bird{num}.png')
+            img = pygame.image.load(os.path.join(base_dir, f'bird{num}.png'))
             self.images.append(img)
         self.image = self.images [self.index]
         self.rect = self.image.get_rect()
@@ -98,7 +100,7 @@ class Bird(pygame.sprite.Sprite):
 class Pipe(pygame.sprite.Sprite):
     def __init__(self, x, y, position):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('assets/pipe.png')
+        self.image = pygame.image.load(os.path.join(base_dir, 'pipe.png'))
         self.rect = self.image.get_rect()
         # position 1 is from the top, -1 is from the bottom
         if position == 1:
